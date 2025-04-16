@@ -1,0 +1,31 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline when code is pushed to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # The job will run on an Ubuntu environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This step checks out the code in your repository
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # This step installs Node.js
+        with:
+          node-version: '14'  # Specify the version of Node.js you want to use
+
+      - name: Install dependencies
+        run: npm install  # Install the project dependencies
+
+      - name: Run tests
+        run: npm test  # Run your tests (make sure you have a test script in package.json)
+
+      - name: Build project
+        run: npm run build  # Build the project (if you have a build script defined in package.json)
+
+      - name: Deploy to Production
+        run: ./deploy.sh  # Assuming you have a deploy.sh script for deployment
