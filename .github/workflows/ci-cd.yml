@@ -19,13 +19,21 @@ jobs:
           node-version: '14'  # Specify the version of Node.js you want to use
 
       - name: Install dependencies
-        run: npm install  # Install the project dependencies
+        run: |
+          cd my-app  # Change to the my-app directory
+          npm install  # Install the project dependencies
 
       - name: Run tests
-        run: npm test  # Run your tests (make sure you have a test script in package.json)
+        run: |
+          cd my-app  # Change to the my-app directory
+          npm test  # Run your tests (make sure you have a test script in package.json)
 
       - name: Build project
-        run: npm run build  # Build the project (if you have a build script defined in package.json)
+        run: |
+          cd my-app  # Change to the my-app directory
+          npm run build  # Build the project (if you have a build script defined in package.json)
 
       - name: Deploy to Production
-        run: ./deploy.sh  # Assuming you have a deploy.sh script for deployment
+        run: |
+          cd my-app  # Change to the my-app directory (if needed)
+          ./deploy.sh  # Assuming you have a deploy.sh script for deployment
